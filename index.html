@@ -15,9 +15,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    </noscript>
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -43,7 +46,8 @@
                     <h3>Tools</h3>
                     <button class="close-btn" id="closeSidebarBtn">&times;</button>
                 </div>
-                <button data-tool="imageConverter" class="active"><i class="ph-fill ph-image"></i> Chuyển đổi Ảnh</button>
+                <button data-tool="imageConverter" class="active"><i class="ph-fill ph-image"></i> Chuyển đổi
+                    Ảnh</button>
                 <button data-tool="imageEditor"><i class="ph-fill ph-pencil-line"></i> Chỉnh sửa ảnh</button>
                 <button data-tool="watermark"><i class="ph-fill ph-stamp"></i> Đóng dấu ảnh</button>
                 <button data-tool="videoThumbnail"><i class="ph-fill ph-film-strip"></i> Video → Thumbnail</button>
@@ -53,6 +57,7 @@
                 <button data-tool="base64File"><i class="ph-fill ph-file-arrow-up"></i> Base64 File</button>
                 <button data-tool="jwtDecoder"><i class="ph-fill ph-key"></i> JWT Decoder</button>
                 <button data-tool="hashGenerator"><i class="ph-fill ph-fingerprint"></i> Trình tạo Hash</button>
+                <button data-tool="codeMinifier"><i class="ph-fill ph-file-code"></i> Minify / Unminify </button>
 
                 <button data-tool="qrGenerator"><i class="ph-fill ph-qr-code"></i> Tạo mã QR</button>
                 <button data-tool="currencyConverter"><i class="ph-fill ph-currency-dollar"></i> Đổi tiền</button>
@@ -74,6 +79,10 @@
     <script src="https://cdn.jsdelivr.net/npm/easyqrcodejs@4.6.0/dist/easy.qrcode.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify-css.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify-html.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/terser/dist/bundle.min.js" defer></script>
 
     <script src="js/app.js" type="module"></script>
 </body>
