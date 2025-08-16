@@ -1,4 +1,4 @@
-function getJwtDecoderHtml() {
+export function getJwtDecoderHtml() {
     return `
     <h3>JWT (JSON Web Token) Decoder</h3>
     <p>Dán chuỗi JWT của bạn vào đây. Công cụ sẽ giải mã phần Header và Payload.</p>
@@ -17,7 +17,7 @@ function getJwtDecoderHtml() {
   `;
 }
 
-function initJwtDecoder() {
+export function initJwtDecoder() {
     document.getElementById('jwt-input').addEventListener('input', decodeJwt);
 }
 

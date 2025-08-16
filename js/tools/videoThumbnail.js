@@ -1,4 +1,7 @@
-function getVideoThumbnailHtml() {
+import { showToast, setupDragDrop } from '../ui.js';
+import { downloadBlob, dataURLtoBlob } from '../utils.js';
+
+export function getVideoThumbnailHtml() {
     return `
     <h3>Video → Thumbnail</h3>
     <div class="drop-zone">
@@ -16,10 +19,10 @@ function getVideoThumbnailHtml() {
     <div class="result" id="vid-result">Chưa có kết quả</div>
   `;
 }
-function initVideoThumbnail() {
+export function initVideoThumbnail() {
     document.getElementById('makeThumbBtn').addEventListener('click', () => processVideoFrame(true));
     document.getElementById('previewThumbBtn').addEventListener('click', () => processVideoFrame(false));
-    setupDragDrop(document.getElementById('panel'), 'vid-file', file => showToast(`Đã nhận file: ${file.name}`));
+    setupDragDrop(panel, 'vid-file', null, MAX_FILE_SIZE);
 }
 async function processVideoFrame(shouldDownload = false) {
     const f = document.getElementById('vid-file').files[0];

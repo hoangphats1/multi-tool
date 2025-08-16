@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    window.MAX_FILE_SIZE = 10 * 1024 * 1024;
+
     const body = document.body;
     const panel = document.getElementById('panel');
     const toolButtons = document.querySelectorAll('#toolList button[data-tool]');
@@ -38,47 +40,45 @@ document.addEventListener('DOMContentLoaded', () => {
     closeSidebarBtn.addEventListener('click', closeMenu);
     backdrop.addEventListener('click', closeMenu);
 
-    const toolMapping = {
-        'imgconv': { html: getImageConverterHtml, init: initImageConverter },
-        'vidthumb': { html: getVideoThumbnailHtml, init: initVideoThumbnail },
-        'qrgen': { html: getQrGeneratorHtml, init: initQrGenerator },
-        'json': { html: getJsonFormatterHtml, init: initJsonFormatter },
-        'watermark': { html: getWatermarkHtml, init: initWatermark },
-        'base64file': { html: getBase64FileHtml, init: initBase64File },
-        'jwt': { html: getJwtDecoderHtml, init: initJwtDecoder },
-        'hash': { html: getHashGeneratorHtml, init: initHashGenerator },
-        'csvjson': { html: getCsvJsonConverterHtml, init: initCsvJsonConverter },
-        'fb-utils': { html: getFacebookUtilsHtml, init: initFacebookUtils },
-        'image-editor': { html: getImageEditorHtml, init: initImageEditor },
-        'currency': { html: getCurrencyConverterHtml, init: initCurrencyConverter }
-    };
-
-    function loadTool(name) {
+    async function loadTool(name) {
         panel.classList.add('fade-out');
-        setTimeout(() => {
-            if (toolMapping[name]) {
-                const tool = toolMapping[name];
-                panel.innerHTML = tool.html();
-                panel.scrollTop = 0;
-                tool.init();
-            } else {
-                panel.innerHTML = `<h3>Chào mừng!</h3><p>Chọn một công cụ từ menu bên trái để bắt đầu.</p>`;
-            }
+        
+        try {
+            const module = await import(`./tools/${name}.js`);
+            
+            const getHtmlFunctionName = Object.keys(module).find(key => key.startsWith('get') && key.endsWith('Html'));
+            const initFunctionName = Object.keys(module).find(key => key.startsWith('init'));
+
+            setTimeout(() => {
+                if (getHtmlFunctionName && initFunctionName) {
+                    panel.innerHTML = module[getHtmlFunctionName]();
+                    panel.scrollTop = 0;
+                    module[initFunctionName]();
+                } else {
+                     panel.innerHTML = `<h3>Lỗi</h3><p>Không thể tải công cụ.</p>`;
+                }
+                panel.classList.remove('fade-out');
+            }, 200);
+
+        } catch (error) {
+            console.error("Lỗi tải tool:", error);
+            panel.innerHTML = `<h3>Lỗi</h3><p>Không thể tải công cụ. Vui lòng kiểm tra lại đường dẫn file.</p>`;
             panel.classList.remove('fade-out');
-        }, 200);
+        }
     }
 
     sidebar.addEventListener('click', (e) => {
         const toolButton = e.target.closest('button[data-tool]');
         if (toolButton) {
+            const toolName = toolButton.dataset.tool;
             toolButtons.forEach(btn => btn.classList.remove('active'));
             toolButton.classList.add('active');
-            loadTool(toolButton.dataset.tool);
+            loadTool(toolName); 
             if (window.innerWidth <= 768) {
                 closeMenu();
             }
         }
     });
 
-    loadTool('imgconv');
+    loadTool('imageConverter');
 });

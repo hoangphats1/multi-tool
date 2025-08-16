@@ -1,4 +1,7 @@
-function getQrGeneratorHtml() {
+import { showToast } from '../ui.js';
+import { downloadBlob, dataURLtoBlob } from '../utils.js';
+
+export function getQrGeneratorHtml() {
     return `
     <h3>Tạo mã QR</h3>
     <label for="qr-text">Nội dung (link, text, SĐT...)</label>
@@ -15,7 +18,7 @@ function getQrGeneratorHtml() {
     <div class="result" id="qr-result" style="padding: 20px;">Chưa có mã QR</div>
   `;
 }
-function initQrGenerator() {
+export function initQrGenerator() {
     document.getElementById('makeQrBtn').addEventListener('click', generateQRCode);
 }
 function generateQRCode() {

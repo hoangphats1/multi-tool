@@ -1,4 +1,7 @@
-function getWatermarkHtml() {
+import { showToast, setupDragDrop } from '../ui.js';
+import { downloadBlob, dataURLtoBlob } from '../utils.js';
+
+export function getWatermarkHtml() {
     return `
     <h3>Đóng dấu ảnh (Watermark)</h3>
     <div class="drop-zone">
@@ -23,13 +26,13 @@ function getWatermarkHtml() {
   `;
 }
 
-function initWatermark() {
+export function initWatermark() {
     document.getElementById('addWmBtn').addEventListener('click', applyWatermark);
     document.getElementById('wm-base-img').addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) showToast(`Đã chọn ảnh gốc: ${file.name}`);
     });
-    setupDragDrop(document.getElementById('panel'), 'wm-base-img');
+    setupDragDrop(panel, 'wm-base-img', null, MAX_FILE_SIZE);
 }
 
 function applyWatermark() {

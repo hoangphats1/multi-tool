@@ -1,4 +1,6 @@
-function getFacebookUtilsHtml() {
+import { showToast } from '../ui.js';
+
+export function getFacebookUtilsHtml() {
     return `
     <h3>Tiện ích Facebook</h3>
     <h4>Lấy Avatar từ User ID</h4>
@@ -12,7 +14,7 @@ function getFacebookUtilsHtml() {
   `;
 }
 
-function initFacebookUtils() {
+export function initFacebookUtils() {
     document.getElementById('fb-get-avatar-btn').addEventListener('click', getFacebookAvatar);
 }
 

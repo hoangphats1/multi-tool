@@ -1,4 +1,7 @@
-function getBase64FileHtml() {
+import { showToast, setupDragDrop } from '../ui.js';
+import { downloadBlob, dataURLtoBlob } from '../utils.js';
+
+export function getBase64FileHtml() {
     return `
     <h3>File ↔ Base64</h3>
     <div class="row">
@@ -10,7 +13,7 @@ function getBase64FileHtml() {
   `;
 }
 
-function initBase64File() {
+export function initBase64File() {
     const encodeBtn = document.getElementById('b64-mode-encode');
     const decodeBtn = document.getElementById('b64-mode-decode');
 
@@ -30,7 +33,7 @@ function initBase64File() {
                 <label for="b64-out">Chuỗi Base64</label>
                 <textarea id="b64-out" readonly style="height:150px;"></textarea>
             `;
-            setupDragDrop(panel, 'b64-file-in');
+            setupDragDrop(panel, 'b64-file-in', null, window.MAX_FILE_SIZE); 
             document.getElementById('b64-encode-btn').addEventListener('click', encodeFileToBase64);
         } else {
             decodeBtn.classList.remove('ghost');

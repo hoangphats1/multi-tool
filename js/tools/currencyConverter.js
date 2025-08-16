@@ -1,4 +1,6 @@
-function getCurrencyConverterHtml() {
+import { showToast } from '../ui.js';
+
+export function getCurrencyConverterHtml() {
     return `
     <h3>Công cụ đổi tiền</h3>
     <p>Chuyển đổi giá trị giữa các loại tiền tệ khác nhau.</p>
@@ -16,7 +18,7 @@ function getCurrencyConverterHtml() {
   `;
 }
 
-async function initCurrencyConverter() {
+export async function initCurrencyConverter() {
     const fromSelect = document.getElementById('currency-from');
     const toSelect = document.getElementById('currency-to');
     const convertBtn = document.getElementById('currency-convert-btn');

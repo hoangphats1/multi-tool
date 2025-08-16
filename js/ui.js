@@ -9,7 +9,7 @@
  * @param {string} message
  * @param {string} type
  */
-function showToast(message, type = 'success') {
+export function showToast(message, type = 'success') {
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -28,9 +28,10 @@ function showToast(message, type = 'success') {
   });
 }
 
-function setupDragDrop(panelElement, fileInputId, onFileDropCallback) {
+export function setupDragDrop(panelElement, fileInputId, onFileDropCallback, maxSizeInBytes) {
   const fileInput = panelElement.querySelector(`#${fileInputId}`);
   const dropZone = panelElement.querySelector('.drop-zone') || panelElement;
+  const originalDropZoneText = dropZone.querySelector('p')?.innerHTML || 'Kéo thả file vào đây, hoặc bấm để chọn file';
   const dropZoneText = dropZone.querySelector('p');
 
   dropZone.addEventListener('click', (e) => {
@@ -41,15 +42,27 @@ function setupDragDrop(panelElement, fileInputId, onFileDropCallback) {
 
   fileInput.addEventListener('change', () => {
     if (fileInput.files.length > 0) {
-      const fileName = fileInput.files[0].name;
+      const file = fileInput.files[0];
+      
+      if (maxSizeInBytes && file.size > maxSizeInBytes) {
+        showToast(`File quá lớn. Vui lòng chọn file nhỏ hơn ${maxSizeInBytes / 1024 / 1024} MB.`, 'error');
+        fileInput.value = '';
+        if (dropZoneText) {
+          dropZoneText.innerHTML = originalDropZoneText;
+        }
+        dropZone.classList.remove('has-file');
+        return;
+      }
+
+      const fileName = file.name;
       if (dropZoneText) {
         dropZoneText.innerHTML = `<i class="ph-fill ph-file"></i> Tệp đã chọn: <strong>${fileName}</strong>`;
       }
       dropZone.classList.add('has-file');
-      if (onFileDropCallback) onFileDropCallback(fileInput.files[0]);
+      if (onFileDropCallback) onFileDropCallback(file);
     } else {
       if (dropZoneText) {
-        dropZoneText.innerHTML = `Kéo thả file vào đây, hoặc bấm để chọn file`;
+        dropZoneText.innerHTML = originalDropZoneText;
       }
       dropZone.classList.remove('has-file');
     }

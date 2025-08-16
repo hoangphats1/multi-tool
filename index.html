@@ -6,16 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Multi Tool - Format Converter</title>
+
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 </head>
 
 <body>
@@ -36,18 +43,20 @@
                     <h3>Tools</h3>
                     <button class="close-btn" id="closeSidebarBtn">&times;</button>
                 </div>
-                <button data-tool="imgconv" class="active"><i class="ph-fill ph-image"></i> Chuyển đổi Ảnh</button>
-                <button data-tool="vidthumb"><i class="ph-fill ph-film-strip"></i> Video → Thumbnail</button>
-                <button data-tool="qrgen"><i class="ph-fill ph-qr-code"></i> Tạo mã QR</button>
-                <button data-tool="json"><i class="ph-fill ph-code"></i> JSON Formatter</button>
+                <button data-tool="imageConverter" class="active"><i class="ph-fill ph-image"></i> Chuyển đổi Ảnh</button>
+                <button data-tool="imageEditor"><i class="ph-fill ph-pencil-line"></i> Chỉnh sửa ảnh</button>
                 <button data-tool="watermark"><i class="ph-fill ph-stamp"></i> Đóng dấu ảnh</button>
-                <button data-tool="base64file"><i class="ph-fill ph-file-arrow-up"></i> Base64 File</button>
-                <button data-tool="jwt"><i class="ph-fill ph-key"></i> JWT Decoder</button>
-                <button data-tool="hash"><i class="ph-fill ph-fingerprint"></i> Trình tạo Hash</button>
-                <button data-tool="csvjson"><i class="ph-fill ph-file-csv"></i> CSV ↔ JSON</button>
-                <button data-tool="fb-utils"><i class="ph-fill ph-facebook-logo"></i> Tiện ích FB</button>
-                <button data-tool="image-editor"><i class="ph-fill ph-pencil-line"></i> Chỉnh sửa ảnh</button>
-                <button data-tool="currency"><i class="ph-fill ph-currency-dollar"></i> Đổi tiền</button>
+                <button data-tool="videoThumbnail"><i class="ph-fill ph-film-strip"></i> Video → Thumbnail</button>
+
+                <button data-tool="jsonFormatter"><i class="ph-fill ph-code"></i> JSON Formatter</button>
+                <button data-tool="csvJsonConverter"><i class="ph-fill ph-file-csv"></i> CSV ↔ JSON</button>
+                <button data-tool="base64File"><i class="ph-fill ph-file-arrow-up"></i> Base64 File</button>
+                <button data-tool="jwtDecoder"><i class="ph-fill ph-key"></i> JWT Decoder</button>
+                <button data-tool="hashGenerator"><i class="ph-fill ph-fingerprint"></i> Trình tạo Hash</button>
+
+                <button data-tool="qrGenerator"><i class="ph-fill ph-qr-code"></i> Tạo mã QR</button>
+                <button data-tool="currencyConverter"><i class="ph-fill ph-currency-dollar"></i> Đổi tiền</button>
+                <button data-tool="facebookUtils"><i class="ph-fill ph-facebook-logo"></i> Tiện ích FB</button>
             </aside>
 
             <div class="backdrop" id="backdrop"></div>
@@ -66,23 +75,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" defer></script>
 
-    <script src="js/utils.js" defer></script>
-    <script src="js/ui.js" defer></script>
-
-    <script src="js/tools/imageConverter.js" defer></script>
-    <script src="js/tools/videoThumbnail.js" defer></script>
-    <script src="js/tools/qrGenerator.js" defer></script>
-    <script src="js/tools/jsonFormatter.js" defer></script>
-    <script src="js/tools/watermark.js" defer></script>
-    <script src="js/tools/base64File.js" defer></script>
-    <script src="js/tools/jwtDecoder.js" defer></script>
-    <script src="js/tools/hashGenerator.js" defer></script>
-    <script src="js/tools/csvJsonConverter.js" defer></script>
-    <script src="js/tools/facebookUtils.js" defer></script>
-    <script src="js/tools/imageEditor.js" defer></script>
-    <script src="js/tools/currencyConverter.js" defer></script>
-
-    <script src="js/app.js" defer></script>
+    <script src="js/app.js" type="module"></script>
 </body>
 
 </html>

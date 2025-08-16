@@ -1,4 +1,6 @@
-function getHashGeneratorHtml() {
+import { showToast } from '../ui.js';
+
+export function getHashGeneratorHtml() {
   return `
     <h3>Trình tạo Hash (MD5/SHA)</h3>
     <p>Nhập văn bản hoặc chọn file để tính toán mã hash.</p>
@@ -12,7 +14,7 @@ function getHashGeneratorHtml() {
   `;
 }
 
-function initHashGenerator() {
+export function initHashGenerator() {
     document.getElementById('hash-generate-btn').addEventListener('click', generateHashes);
 }
 
@@ -27,6 +29,14 @@ function generateHashes() {
         displayHashes(text);
     } else if (fileInput.files.length > 0) {
         const file = fileInput.files[0];
+
+        if (file.size > MAX_FILE_SIZE) {
+            showToast(`File quá lớn. Vui lòng chọn file nhỏ hơn ${MAX_FILE_SIZE / 1024 / 1024} MB.`, 'error');
+            resultsDiv.innerHTML = '';
+            fileInput.value = '';
+            return;
+        }
+
         const reader = new FileReader();
         reader.onload = (e) => {
             const arrayBuffer = e.target.result;

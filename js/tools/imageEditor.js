@@ -1,4 +1,7 @@
-function getImageEditorHtml() {
+import { setupDragDrop } from '../ui.js';
+import { downloadBlob, dataURLtoBlob } from '../utils.js';
+
+export function getImageEditorHtml() {
     return `
     <h3>Trình chỉnh sửa ảnh đơn giản</h3>
     <div class="drop-zone">
@@ -31,7 +34,7 @@ function getImageEditorHtml() {
   `;
 }
 
-function initImageEditor() {
+export function initImageEditor() {
     const fileInput = document.getElementById('editor-file-input');
     const controls = document.getElementById('editor-controls');
     const canvas = document.getElementById('editor-canvas');
@@ -111,5 +114,5 @@ function initImageEditor() {
         downloadBlob(dataURLtoBlob(dataUrl), 'edited-image.png');
     });
 
-    setupDragDrop(document.getElementById('panel'), 'editor-file-input');
+    setupDragDrop(panel, 'editor-file-input', null, MAX_FILE_SIZE);
 }

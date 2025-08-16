@@ -1,4 +1,7 @@
-function getCsvJsonConverterHtml() {
+import { showToast } from '../ui.js';
+import { downloadBlob } from '../utils.js';
+
+export function getCsvJsonConverterHtml() {
     return `
     <h3>Trình chuyển đổi CSV ↔ JSON</h3>
     <div class="row">
@@ -9,7 +12,7 @@ function getCsvJsonConverterHtml() {
   `;
 }
 
-function initCsvJsonConverter() {
+export function initCsvJsonConverter() {
     const csv2jsonBtn = document.getElementById('csv-mode-csv2json');
     const json2csvBtn = document.getElementById('csv-mode-json2csv');
     const panel = document.getElementById('csv-panel');

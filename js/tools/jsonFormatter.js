@@ -1,4 +1,4 @@
-function getJsonFormatterHtml() {
+export function getJsonFormatterHtml() {
   return `
     <h3>JSON Formatter & Validator</h3>
     <p>Dán chuỗi JSON của bạn vào ô dưới đây. Công cụ sẽ tự động định dạng và kiểm tra tính hợp lệ.</p>
@@ -7,7 +7,7 @@ function getJsonFormatterHtml() {
   `;
 }
 
-function initJsonFormatter() {
+export function initJsonFormatter() {
   const inputArea = document.getElementById('json-input');
   const statusArea = document.getElementById('json-status');
 

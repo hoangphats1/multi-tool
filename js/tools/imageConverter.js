@@ -1,4 +1,7 @@
-function getImageConverterHtml() {
+import { showToast, setupDragDrop } from '../ui.js';
+import { downloadBlob, dataURLtoBlob } from '../utils.js';
+
+export function getImageConverterHtml() {
     return `
     <h3>Chuyển đổi & Resize Ảnh</h3>
     <div class="drop-zone">
@@ -18,10 +21,10 @@ function getImageConverterHtml() {
     <div class="result" id="img-result">Chưa có ảnh</div>
   `;
 }
-function initImageConverter() {
+export function initImageConverter() {
     document.getElementById('convertImgBtn').addEventListener('click', convertImage);
     document.getElementById('img-file').addEventListener('change', previewImage);
-    setupDragDrop(document.getElementById('panel'), 'img-file', file => showToast(`Đã nhận file: ${file.name}`));
+    setupDragDrop(panel, 'img-file', null, MAX_FILE_SIZE);
 }
 function previewImage() {
     const f = document.getElementById('img-file').files[0];
