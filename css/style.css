@@ -433,6 +433,7 @@ body.dark-mode .theme-toggle .ph-moon {
         background-color: rgba(255, 255, 255, 0.7);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
+        overflow-y: auto;
     }
 
     body.dark-mode .sidebar {
