@@ -13,6 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const themeToggle = document.getElementById('themeToggle');
 
+    const reloadBtn = document.getElementById('reloadBtn');
+
+    if (reloadBtn) {
+        reloadBtn.addEventListener('click', () => {
+            location.reload();
+        });
+    }
+
     const applyTheme = (theme) => {
         if (theme === 'dark') { body.classList.add('dark-mode'); }
         else { body.classList.remove('dark-mode'); }
