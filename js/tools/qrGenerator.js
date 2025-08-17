@@ -24,11 +24,14 @@ export function initQrGenerator() {
 function generateQRCode() {
     const text = document.getElementById('qr-text').value;
     if (!text.trim()) return showToast('Vui lòng nhập nội dung cho mã QR.', 'error');
+    
     const size = parseInt(document.getElementById('qr-size').value);
     const colorDark = document.getElementById('qr-color-dark').value;
     const colorLight = document.getElementById('qr-color-light').value;
     const resultDiv = document.getElementById('qr-result');
+    
     resultDiv.innerHTML = '';
+    
     const options = {
         text: text,
         width: size,
@@ -36,17 +39,22 @@ function generateQRCode() {
         colorDark: colorDark,
         colorLight: colorLight,
         correctLevel: QRCode.CorrectLevel.H,
-        onRenderingEnd: (qrCodeOptions) => {
-            const downloadBtn = document.getElementById('downloadQrBtn');
-            downloadBtn.style.display = 'inline-flex';
-            downloadBtn.onclick = () => {
-                const canvas = qrCodeOptions._el.querySelector('canvas');
-                if (canvas) {
-                    downloadBlob(dataURLtoBlob(canvas.toDataURL('image/png')), 'qrcode.png');
-                }
-            };
+    };
+
+    const qrcode = new QRCode(resultDiv, options);
+
+    const downloadBtn = document.getElementById('downloadQrBtn');
+    downloadBtn.style.display = 'inline-flex';
+    
+    downloadBtn.onclick = () => {
+        const canvas = resultDiv.querySelector('canvas'); 
+        
+        if (canvas) {
+            downloadBlob(dataURLtoBlob(canvas.toDataURL('image/png')), 'qrcode.png');
+        } else {
+            showToast('Không tìm thấy canvas để tải về.', 'error');
         }
     };
-    new QRCode(resultDiv, options);
+    
     showToast('Đã tạo mã QR thành công!');
 }
