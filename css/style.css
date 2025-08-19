@@ -660,3 +660,45 @@ body.dark-mode .theme-toggle .ph-moon {
     color: var(--text-color-light);
     padding: 24px;
 }
+
+.coffee-section {
+    margin-top: 32px;
+    background-color: var(--primary-color-light);
+    border-radius: var(--border-radius);
+    padding: 12px 0;
+    overflow: hidden;
+}
+
+.marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.marquee-content {
+    display: flex;
+    width: fit-content;
+    animation: marquee-text 15s linear infinite;
+}
+
+.marquee-content a {
+    white-space: nowrap;
+    padding: 0 2rem;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.marquee-content a:hover {
+    color: var(--text-color-dark);
+}
+
+@keyframes marquee-text {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
