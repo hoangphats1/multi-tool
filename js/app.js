@@ -88,5 +88,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    loadTool('imageConverter');
+    loadTool('contentAnalyzer');
 });

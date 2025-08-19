@@ -1,5 +1,4 @@
 :root {
-
     --bg-color: #f0f2f5;
     --card-bg-color: #ffffff;
     --primary-color: #0d6efd;
@@ -9,14 +8,15 @@
     --text-color-light: #6c757d;
     --input-bg-color: #ffffff;
     --box-shadow-color: rgba(0, 0, 0, 0.05);
-
+    --error-color: #dc3545;
+    --success-color: #198754;
     --font-family: 'Inter', system-ui, sans-serif;
+    --font-mono: 'Fira Code', 'Courier New', Courier, monospace;
     --border-radius: 8px;
     --transition-speed: 0.2s;
 }
 
 body.dark-mode {
-
     --bg-color: #121212;
     --card-bg-color: #1e1e1e;
     --primary-color: #4dabf7;
@@ -26,6 +26,8 @@ body.dark-mode {
     --text-color-light: #888;
     --input-bg-color: #2c2c2c;
     --box-shadow-color: rgba(0, 0, 0, 0.2);
+    --error-color: #f87171;
+    --success-color: #238636;
 }
 
 body {
@@ -73,11 +75,6 @@ header img {
     align-items: center;
     gap: 8px;
 }
-
-.theme-toggle {
-    margin-left: auto;
-}
-
 
 .sidebar {
     background: var(--card-bg-color);
@@ -144,10 +141,11 @@ header img {
     background: var(--card-bg-color);
     padding: 24px;
     border-radius: var(--border-radius);
-    min-height: 400px;
     box-shadow: 0 4px 6px var(--box-shadow-color);
     border-top: 4px solid var(--primary-color);
     transition: background-color var(--transition-speed), opacity var(--transition-speed) ease;
+    max-width: 100%;
+    overflow: auto;
 }
 
 .panel.fade-out {
@@ -163,13 +161,31 @@ header img {
     margin-bottom: 20px;
 }
 
-
 label {
     display: block;
     margin-top: 16px;
     margin-bottom: 8px;
     font-size: 14px;
     font-weight: 500;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    overflow-x: auto;
+}
+
+th,
+td {
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--bg-color);
+    font-weight: 600;
 }
 
 input,
@@ -255,8 +271,7 @@ button.ghost {
 }
 
 .drop-zone.has-file {
-    border-color: var(--success-color, #198754);
-    /* Dùng màu success nếu có, không thì xanh lá */
+    border-color: var(--success-color);
     background-color: #f6fff8;
 }
 
@@ -265,7 +280,6 @@ body.dark-mode .drop-zone.has-file {
 }
 
 .drop-zone p {
-    /* Đảm bảo thẻ p bên trong căn giữa và có hiệu ứng */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -303,7 +317,26 @@ pre.result {
     font-size: 14px;
     background-color: #2e2e2e;
     color: green;
-    white-space: pre-wrap;
+    white-space: pre;
+    padding: 16px;
+    overflow-x: auto;
+}
+
+pre.result::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+pre.result::-webkit-scrollbar-track {
+    background: #2e2e2e;
+}
+
+pre.result::-webkit-scrollbar-thumb {
+    background-color: #555;
+}
+
+pre.result::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
 }
 
 body.dark-mode pre.result {
@@ -339,14 +372,16 @@ footer a:hover {
     border: 1px solid var(--border-color);
 }
 
+.theme-toggle i {
+    color: var(--text-color-dark);
+}
+
 .theme-toggle .ph-sun {
     display: block;
-    color: var(--text-color-dark);
 }
 
 .theme-toggle .ph-moon {
     display: none;
-    color: var(--text-color-dark);
 }
 
 body.dark-mode .theme-toggle .ph-sun {
@@ -431,8 +466,9 @@ body.dark-mode .theme-toggle .ph-moon {
         padding: 16px;
         box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
         background-color: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        overflow-y: auto;
     }
 
     body.dark-mode .sidebar {
@@ -467,4 +503,160 @@ body.dark-mode .theme-toggle .ph-moon {
         color: var(--text-color-dark);
         text-align: end;
     }
+    
+    body.sidebar-is-open {
+        overflow: hidden;
+    }
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+}
+
+#chat-box {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 16px;
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.user-message, .ai-message, .ai-error {
+    padding: 12px 16px;
+    border-radius: 12px;
+    max-width: 80%;
+    line-height: 1.6;
+}
+
+.user-message {
+    background-color: var(--primary-color);
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.ai-message, .ai-error {
+    background-color: var(--card-bg-color);
+    color: var(--text-color-dark);
+    border: 1px solid var(--border-color);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.ai-error {
+    border-color: var(--error-color);
+    color: var(--error-color);
+}
+
+.chat-input-area {
+    margin-top: 16px;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+#chat-input {
+    flex-grow: 1;
+    resize: none;
+    max-height: 150px;
+    overflow-y: auto;
+    line-height: 1.5;
+    width: 50%;
+}
+
+#send-chat-btn {
+    height: 42px;
+    flex-shrink: 0;
+}
+
+.markdown-body {
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    font-weight: 600;
+    line-height: 1.25;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3em;
+}
+.markdown-body h1 { font-size: 2em; }
+.markdown-body h2 { font-size: 1.5em; }
+.markdown-body h3 { font-size: 1.25em; }
+
+.markdown-body p {
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.markdown-body a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.markdown-body a:hover {
+    text-decoration: underline;
+}
+
+.markdown-body ul, .markdown-body ol {
+    padding-left: 2em;
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.markdown-body li {
+    margin-bottom: 0.5em;
+}
+
+.markdown-body code {
+    font-family: var(--font-mono);
+    background: #2e2e2e;
+    color: green;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.markdown-body pre.code-block {
+    background: #181a1b;
+    color: green;
+    padding: 16px;
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    margin: 1em 0;
+    white-space: pre;
+    font-family: var(--font-mono);
+}
+
+.markdown-body pre.code-block code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+    font-size: 1em;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.markdown-body blockquote {
+    margin: 1em 0;
+    padding: 0 1em;
+    color: var(--text-color-light);
+    border-left: 0.25em solid var(--border-color);
+}
+
+.spinner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--text-color-light);
+    padding: 24px;
 }
