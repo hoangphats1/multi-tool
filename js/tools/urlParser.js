@@ -1,24 +1,40 @@
 export function getUrlParserHtml() {
-    return `
+  return `
     <h3>Bộ phân tích & giải mã URL</h3>
     <p>Dán một URL đầy đủ vào ô dưới đây để xem các thành phần của nó.</p>
     
     <label for="url-input">URL đầy đủ</label>
     <textarea id="url-input" placeholder="https://example.com:8080/path/to/page?query=search&id=123#section" style="height: 150px;"></textarea>
     
-    <div id="url-output-container" style="margin-top: 16px; display: none;">
-      <h4>Các thành phần của URL</h4>
+    <div id="url-output-container" style="margin-top: 24px; display: none;">
+      
+      <h4>Các thành phần chính</h4>
       <div class="result-grid">
-        <span>Protocol</span><pre id="url-protocol"></pre>
-        <span>Hostname</span><pre id="url-hostname"></pre>
-        <span>Port</span><pre id="url-port"></pre>
-        <span>Pathname</span><pre id="url-pathname"></pre>
-        <span>Hash</span><pre id="url-hash"></pre>
+        <div class="grid-item">
+          <span class="grid-item-label">Protocol</span>
+          <pre id="url-protocol" class="grid-item-value"></pre>
+        </div>
+        <div class="grid-item">
+          <span class="grid-item-label">Hostname</span>
+          <pre id="url-hostname" class="grid-item-value"></pre>
+        </div>
+        <div class="grid-item">
+          <span class="grid-item-label">Port</span>
+          <pre id="url-port" class="grid-item-value"></pre>
+        </div>
+        <div class="grid-item">
+          <span class="grid-item-label">Pathname</span>
+          <pre id="url-pathname" class="grid-item-value"></pre>
+        </div>
+         <div class="grid-item">
+          <span class="grid-item-label">Hash</span>
+          <pre id="url-hash" class="grid-item-value"></pre>
+        </div>
       </div>
 
-      <h4>Tham số truy vấn (Query Parameters)</h4>
+      <h4 style="margin-top: 24px;">Tham số truy vấn (Query Parameters)</h4>
       <div id="url-params-container">
-        <p>URL này không có tham số truy vấn.</p>
+        <p class="info-box">URL này không có tham số truy vấn.</p>
       </div>
     </div>
     <div id="url-error-container" class="result" style="color: var(--error-color); margin-top: 16px; display: none;"></div>

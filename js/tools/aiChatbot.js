@@ -1,9 +1,8 @@
-// File: js/tools/aiChatbot.js
 import { showToast } from '../ui.js';
 
 export function getAiChatbotHtml() {
   return `
-    <h3>AI Chatbot (Model Gemini)</h3>
+    <h3>AI Chatbot</h3>
     <p>Trò chuyện với AI Gemini Flash.</p>
     <div class="chat-container">
         <div id="chat-box" class="result markdown-body">

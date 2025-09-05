@@ -4,11 +4,11 @@ export function getJwtDecoderHtml() {
     <p>Dán chuỗi JWT của bạn vào đây. Công cụ sẽ giải mã phần Header và Payload.</p>
     <textarea id="jwt-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c" style="height: 150px;"></textarea>
     <div class="row">
-      <div style="flex:1">
+      <div style="flex:1; overflow-x:auto;">
         <h4>Header</h4>
         <pre class="result" id="jwt-header" style="text-align:left;"></pre>
       </div>
-      <div style="flex:1">
+      <div style="flex:1; overflow-x:auto;">
         <h4>Payload</h4>
         <pre class="result" id="jwt-payload" style="text-align:left;"></pre>
       </div>

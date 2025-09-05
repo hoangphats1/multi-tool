@@ -2,7 +2,7 @@ import { showToast } from '../ui.js';
 
 export function getContentAnalyzerHtml() {
   return `
-    <h3>Phân tích Nội dung AI</h3>
+    <h3>Phân tích Nội dung</h3>
     <p>Dán một đoạn văn bản (bài báo, email, tài liệu...) vào ô dưới đây để phân tích bằng AI.</p>
     
     <label for="content-input">Nội dung cần phân tích</label>
@@ -15,6 +15,7 @@ export function getContentAnalyzerHtml() {
             <button class="btn ghost" data-prompt="Liệt kê các ý chính của văn bản sau dưới dạng gạch đầu dòng:"><i class="ph-bold ph-list-bullets"></i> Tìm ý chính</button>
             <button class="btn ghost" data-prompt="Xác định các thực thể (tên người, địa điểm, tổ chức) được nhắc đến trong văn bản sau:"><i class="ph-bold ph-users-three"></i> Tìm thực thể</button>
             <button class="btn ghost" data-prompt="Dịch văn bản sau sang tiếng Anh:"><i class="ph-bold ph-translate"></i> Dịch sang tiếng Anh</button>
+            <button class="btn ghost" data-prompt="Dịch văn bản sau sang tiếng Việt:"><i class="ph-bold ph-translate"></i> Dịch sang tiếng Việt</button>
         </div>
     </div>
 

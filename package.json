@@ -12,5 +12,11 @@
   "license": "ISC",
   "devDependencies": {
     "vite": "^5.3.3"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "chart.js": "^4.5.0",
+    "cronstrue": "^3.2.0",
+    "papaparse": "^5.5.3"
   }
 }

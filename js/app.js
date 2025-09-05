@@ -21,6 +21,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const layoutToggle = document.getElementById('layoutToggle');
+    const wrap = document.querySelector('.wrap');
+
+    const applyLayout = (layout) => {
+        if (layout === 'top') {
+            wrap.classList.add('top-menu-layout');
+        } else {
+            wrap.classList.remove('top-menu-layout');
+        }
+    };
+
+    layoutToggle.addEventListener('click', () => {
+        const isTopLayout = wrap.classList.toggle('top-menu-layout');
+        const newLayout = isTopLayout ? 'top' : 'left';
+        
+        localStorage.setItem('layout', newLayout);
+    });
+
+    const savedLayout = localStorage.getItem('layout') || 'left';
+    applyLayout(savedLayout);
+
+    const sidebarForWheel = document.getElementById('toolList');
+
+    sidebarForWheel.addEventListener('wheel', (event) => {
+        const isTopLayout = document.querySelector('.wrap.top-menu-layout');
+
+        if (isTopLayout) {
+
+            const hasHorizontalScrollbar = sidebarForWheel.scrollWidth > sidebarForWheel.clientWidth;
+            
+            if (hasHorizontalScrollbar) {
+                event.preventDefault();
+                
+                sidebarForWheel.scrollLeft += event.deltaY;
+            }
+        }
+    });
+
     const applyTheme = (theme) => {
         if (theme === 'dark') { body.classList.add('dark-mode'); }
         else { body.classList.remove('dark-mode'); }
@@ -82,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toolButtons.forEach(btn => btn.classList.remove('active'));
             toolButton.classList.add('active');
             loadTool(toolName); 
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             if (window.innerWidth <= 768) {
                 closeMenu();
             }

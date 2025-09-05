@@ -4,7 +4,7 @@ import { downloadBlob, dataURLtoBlob } from '../utils.js';
 export function getImageGeneratorHtml() {
   return `
     <h3>Tạo ảnh AI</h3>
-    <p>Nhập mô tả chi tiết bằng tiếng Anh để AI tạo ra hình ảnh độc đáo cho bạn.</p>
+    <p>Nhập mô tả chi tiết ảnh để AI tạo ra hình ảnh độc đáo cho bạn.</p>
     
     <label for="image-prompt-input">Mô tả hình ảnh</label>
     <textarea id="image-prompt-input" placeholder="Ví dụ: a cat astronaut wearing a helmet, floating among the stars, oil painting style" style="height: 120px;"></textarea>

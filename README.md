@@ -1,6 +1,6 @@
 # 🛠️ Multi Tool - Bộ công cụ đa năng
 
-Một ứng dụng web đơn giản gồm các công cụ hữu ích cho lập trình viên, được xây dựng bằng JavaScript thuần và Vite, không yêu cầu database (Client-side), tích hợp model AI Google Gemini.
+Một ứng dụng web mã nguồn mở gồm hơn 30 công cụ hữu ích cho lập trình viên, được xây dựng bằng JavaScript thuần và Vite, không yêu cầu database (Client-side), tích hợp model AI Google Gemini.
 
 > **[Xem Demo trực tiếp](https://kit.trchicuong.id.vn/)**
 
@@ -44,7 +44,7 @@ Hoặc tải file `.zip` trực tiếp từ repository.
 
 ---
 
-### 📸 Hình minh họa
+### 📸 Hình minh họa (version 1.0.0 cũ)
 
 ![Screenshot](images/preview.png)
 
@@ -74,6 +74,12 @@ multi-tool/
 └── README.md
 └── site.webmanifest
 ```
+---
+
+### 🤝 Đóng góp
+
+Dự án này luôn chào đón các đóng góp! Nếu bạn muốn sửa lỗi, thêm một công cụ mới, hoặc cải thiện mã nguồn, hãy thoải mái tạo một `Pull Request`.
+
 ---
 
 ### ✉️ Góp ý & Liên hệ
