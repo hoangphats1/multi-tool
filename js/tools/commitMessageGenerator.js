@@ -31,57 +31,57 @@ export function getCommitMessageGeneratorHtml() {
       <div class="row">
         <textarea id="commit-output" placeholder="Commit message sẽ được tạo ở đây..." rows="5"></textarea>
       </div>
-      <button id="copy-commit-btn" class="btn" style="margin-top: 8px;"><i class="ph-bold ph-copy"></i> Sao chép kết quả</button>
+      <button id="copy-commit-btn" class="btn ghost" style="margin-top: 8px;"><i class="ph-bold ph-copy"></i> Sao chép kết quả</button>
     </div>
   `;
 }
 
 export function initCommitMessageGenerator() {
-    const diffInput = document.getElementById('diff-input');
-    const commitStyleSelect = document.getElementById('commit-style');
-    const generateBtn = document.getElementById('generate-commit-btn');
-    const commitOutput = document.getElementById('commit-output');
-    const copyBtn = document.getElementById('copy-commit-btn');
+  const diffInput = document.getElementById('diff-input');
+  const commitStyleSelect = document.getElementById('commit-style');
+  const generateBtn = document.getElementById('generate-commit-btn');
+  const commitOutput = document.getElementById('commit-output');
+  const copyBtn = document.getElementById('copy-commit-btn');
 
-    generateBtn.addEventListener('click', async () => {
-        const diff = diffInput.value;
-        const style = commitStyleSelect.value;
+  generateBtn.addEventListener('click', async () => {
+    const diff = diffInput.value;
+    const style = commitStyleSelect.value;
 
-        if (!diff.trim()) {
-            showToast('Vui lòng dán nội dung git diff.', 'warning');
-            return;
-        }
+    if (!diff.trim()) {
+      showToast('Vui lòng dán nội dung git diff.', 'warning');
+      return;
+    }
 
-        const originalBtnHTML = generateBtn.innerHTML;
-        generateBtn.disabled = true;
-        generateBtn.innerHTML = '<i class="ph-bold ph-spinner ph-spin"></i> Đang tạo...';
-        commitOutput.value = 'AI đang phân tích các thay đổi...';
+    const originalBtnHTML = generateBtn.innerHTML;
+    generateBtn.disabled = true;
+    generateBtn.innerHTML = '<i class="ph-bold ph-spinner ph-spin"></i> Đang tạo...';
+    commitOutput.value = 'AI đang phân tích các thay đổi...';
 
-        try {
-            const result = await generateCommitMessageWithAI(diff, style);
-            commitOutput.value = result;
-        } catch (error) {
-            commitOutput.value = `Lỗi: ${error.message}`;
-            showToast('Tạo commit message thất bại.', 'error');
-        } finally {
-            generateBtn.disabled = false;
-            generateBtn.innerHTML = originalBtnHTML;
-        }
-    });
+    try {
+      const result = await generateCommitMessageWithAI(diff, style);
+      commitOutput.value = result;
+    } catch (error) {
+      commitOutput.value = `Lỗi: ${error.message}`;
+      showToast('Tạo commit message thất bại.', 'error');
+    } finally {
+      generateBtn.disabled = false;
+      generateBtn.innerHTML = originalBtnHTML;
+    }
+  });
 
-    copyBtn.addEventListener('click', () => {
-        if (commitOutput.value && !commitOutput.value.startsWith('Lỗi')) {
-            navigator.clipboard.writeText(commitOutput.value);
-            showToast('Đã sao chép commit message!', 'success');
-        }
-    });
+  copyBtn.addEventListener('click', () => {
+    if (commitOutput.value && !commitOutput.value.startsWith('Lỗi')) {
+      navigator.clipboard.writeText(commitOutput.value);
+      showToast('Đã sao chép commit message!', 'success');
+    }
+  });
 }
 
 async function generateCommitMessageWithAI(diff, style) {
-    const apiKey = import.meta.env.VITE_AI_API_KEY;
-    if (!apiKey) throw new Error("API key không được tìm thấy.");
+  const apiKey = import.meta.env.VITE_AI_API_KEY;
+  if (!apiKey) throw new Error("API key không được tìm thấy.");
 
-    const prompt = `
+  const prompt = `
       Bạn là một expert Git và là một lập trình viên senior, chuyên viết các commit message rõ ràng, súc tích và tuân thủ các chuẩn mực.
 
       Dựa trên kết quả \`git diff\` sau đây:
@@ -94,13 +94,13 @@ async function generateCommitMessageWithAI(diff, style) {
       Chỉ trả về duy nhất commit message. Commit message có thể bao gồm một dòng tiêu đề (subject) và một phần thân (body) nếu cần thiết để giải thích thêm. Không thêm bất kỳ văn bản nào khác ngoài commit message.
     `;
 
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-    });
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+  });
 
-    if (!response.ok) throw new Error(`Lỗi API: ${response.statusText}`);
-    const result = await response.json();
-    return result.candidates[0].content.parts[0].text.trim();
+  if (!response.ok) throw new Error(`Lỗi API: ${response.statusText}`);
+  const result = await response.json();
+  return result.candidates[0].content.parts[0].text.trim();
 }
