@@ -12,7 +12,7 @@ export function getImageConverterHtml() {
         <div style="flex:1"><label for="img-w">Chiều rộng (px)</label><input id="img-w" type="number" placeholder="Giữ nguyên"></div>
         <div style="flex:1"><label for="img-h">Chiều cao (px)</label><input id="img-h" type="number" placeholder="Giữ nguyên"></div>
     </div>
-    <div class="row" style="margin-top: 5px;"><input type="checkbox" id="img-aspect" checked style="width:auto;"><label for="img-aspect" style="margin-top:0;">Giữ tỉ lệ khung hình</label></div>
+    <div class="row" style="margin-top: 5px;"><input type="checkbox" id="img-aspect" checked><label for="img-aspect" style="margin-top:0;">Giữ tỉ lệ khung hình</label></div>
     <label for="img-format">Định dạng xuất</label>
     <select id="img-format"><option value="image/png">PNG</option><option value="image/jpeg">JPEG</option><option value="image/webp">WEBP</option></select>
     <label for="img-quality">Chất lượng (JPEG/WEBP)</label>

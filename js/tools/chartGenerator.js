@@ -24,8 +24,8 @@ export function getChartGeneratorHtml() {
           </select>
         </div>
         <div class="col checkbox-group">
-           <label for="has-header">Dòng đầu tiên là tiêu đề</label>
-           <input type="checkbox" id="has-header" checked>
+          <input type="checkbox" id="has-header" checked>
+          <label for="has-header">Dòng đầu tiên là tiêu đề</label>
         </div>
       </div>
       <button id="generate-chart-btn" class="btn primary" style="margin-top: 16px;"><i class="ph-bold ph-chart-line-up"></i> Vẽ biểu đồ</button>
