@@ -260,12 +260,15 @@ button.btn:active,
 #layoutToggle .ph-sidebar-simple {
     display: none;
 }
+
 #layoutToggle .ph-rows {
     display: block;
 }
+
 .wrap.top-menu-layout #layoutToggle .ph-sidebar-simple {
     display: block;
 }
+
 .wrap.top-menu-layout #layoutToggle .ph-rows {
     display: none;
 }
@@ -370,6 +373,7 @@ pre.result::-webkit-scrollbar-thumb:hover,
 .markdown-body pre::-webkit-scrollbar-track {
     border-radius: 4px;
 }
+
 .markdown-body pre::-webkit-scrollbar-thumb {
     border-radius: 4px;
     border: 2px solid #2c2c2c;
@@ -461,12 +465,15 @@ footer a:hover,
 .theme-toggle .ph-sun {
     display: block;
 }
+
 .theme-toggle .ph-moon {
     display: none;
 }
+
 body.dark-mode .theme-toggle .ph-sun {
     display: none;
 }
+
 body.dark-mode .theme-toggle .ph-moon {
     display: block;
 }
@@ -505,15 +512,19 @@ body.dark-mode .theme-toggle .ph-moon {
     body {
         padding: 16px;
     }
+
     header {
         padding: 0 8px;
     }
+
     .tools {
         grid-template-columns: 1fr;
     }
+
     #layoutToggle {
         display: none;
     }
+
     .hamburger-btn {
         display: block;
         background: none;
@@ -525,11 +536,13 @@ body.dark-mode .theme-toggle .ph-moon {
         z-index: 1001;
         transition: opacity 0.3s, visibility 0.3s;
     }
+
     body.sidebar-is-open .hamburger-btn {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
     }
+
     .sidebar {
         position: fixed;
         top: 0;
@@ -548,13 +561,16 @@ body.dark-mode .theme-toggle .ph-moon {
         flex-direction: column;
         align-items: stretch;
     }
+
     body.dark-mode .sidebar {
         background-color: rgba(30, 30, 30, 0.75);
         box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
     }
+
     .sidebar.open {
         transform: translateX(0);
     }
+
     .sidebar-header {
         display: flex;
         justify-content: space-between;
@@ -563,9 +579,11 @@ body.dark-mode .theme-toggle .ph-moon {
         border-bottom: 1px solid var(--border-color);
         margin-bottom: 8px;
     }
+
     .sidebar-header h3 {
         margin: 0;
     }
+
     .sidebar-header .close-btn {
         display: block;
         background: none;
@@ -575,6 +593,7 @@ body.dark-mode .theme-toggle .ph-moon {
         color: var(--text-color-dark);
         text-align: end;
     }
+
     body.sidebar-is-open {
         overflow: hidden;
     }
@@ -631,7 +650,8 @@ body.dark-mode .theme-toggle .ph-moon {
     margin-top: 16px;
     gap: 8px;
     align-items: flex-end;
-    display: flex; /* Đảm bảo có display flex */
+    display: flex;
+    /* Đảm bảo có display flex */
 }
 
 #chat-input {
@@ -670,25 +690,31 @@ body.dark-mode .theme-toggle .ph-moon {
 .markdown-body h1 {
     font-size: 2em;
 }
+
 .markdown-body h2 {
     font-size: 1.5em;
 }
+
 .markdown-body h3 {
     font-size: 1.25em;
 }
+
 .markdown-body p {
     margin-top: 0;
     margin-bottom: 1em;
 }
+
 .markdown-body ul,
 .markdown-body ol {
     padding-left: 2em;
     margin-top: 0;
     margin-bottom: 1em;
 }
+
 .markdown-body li {
     margin-bottom: 0.5em;
 }
+
 .markdown-body :not(pre)>code {
     font-family: var(--font-mono);
     background: #2e2e2e;
@@ -697,6 +723,7 @@ body.dark-mode .theme-toggle .ph-moon {
     border-radius: 4px;
     font-size: 0.9em;
 }
+
 .markdown-body pre {
     font-family: var(--font-mono);
     background: #1e1e1e;
@@ -708,12 +735,14 @@ body.dark-mode .theme-toggle .ph-moon {
     margin: 1em 0;
     border: 1px solid var(--border-color);
 }
+
 .markdown-body pre code {
     background: transparent;
     padding: 0;
     color: inherit;
     font-size: inherit;
 }
+
 .markdown-body blockquote {
     margin: 1em 0;
     padding: 0 1em;
@@ -742,11 +771,13 @@ body.dark-mode .theme-toggle .ph-moon {
     width: 100%;
     overflow: hidden;
 }
+
 .marquee-content {
     display: flex;
     width: fit-content;
     animation: marquee-text 15s linear infinite;
 }
+
 .marquee-content a {
     white-space: nowrap;
     padding: 0 2rem;
@@ -756,13 +787,16 @@ body.dark-mode .theme-toggle .ph-moon {
     text-decoration: none;
     transition: color var(--transition-speed);
 }
+
 .marquee-content a:hover {
     color: var(--text-color-dark);
 }
+
 @keyframes marquee-text {
     0% {
         transform: translateX(0%);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -774,6 +808,7 @@ body.dark-mode .theme-toggle .ph-moon {
         grid-template-columns: 1fr;
         grid-template-rows: auto 1fr;
     }
+
     .wrap.top-menu-layout .sidebar {
         height: 100%;
         position: static;
@@ -788,12 +823,15 @@ body.dark-mode .theme-toggle .ph-moon {
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
+
     .wrap.top-menu-layout .sidebar::-webkit-scrollbar {
         display: none;
     }
+
     .wrap.top-menu-layout .sidebar .sidebar-header {
         display: none;
     }
+
     .wrap.top-menu-layout .sidebar button {
         width: auto;
         flex-shrink: 0;
@@ -806,32 +844,40 @@ body.dark-mode .theme-toggle .ph-moon {
         font-size: 14px;
         transition: all 0.2s ease;
     }
+
     .wrap.top-menu-layout .sidebar button:hover {
         background-color: var(--primary-color-light);
         color: var(--primary-color);
     }
+
     .wrap.top-menu-layout .sidebar button:before {
         display: none;
     }
+
     .wrap.top-menu-layout .sidebar button.active {
         background-color: var(--primary-color);
         color: #fff;
         font-weight: 600;
         box-shadow: 0 2px 8px var(--box-shadow-color);
     }
+
     .wrap.top-menu-layout header .hamburger-btn {
         display: none;
     }
+
     .wrap.top-menu-layout .sidebar::-webkit-scrollbar {
         height: 4px;
     }
+
     .wrap.top-menu-layout .sidebar::-webkit-scrollbar-track {
         background: transparent;
     }
+
     .wrap.top-menu-layout .sidebar::-webkit-scrollbar-thumb {
         background-color: rgba(var(--text-color-dark-rgb), 0.2);
         border-radius: 2px;
     }
+
     .wrap.top-menu-layout .sidebar::-webkit-scrollbar-thumb:hover {
         background-color: rgba(var(--text-color-dark-rgb), 0.4);
     }
@@ -852,8 +898,8 @@ input[type="checkbox"]+label {
 }
 
 .radio-options-group {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 8px;
 }
