@@ -560,6 +560,7 @@ body.dark-mode .theme-toggle .ph-moon {
         overflow-y: auto;
         flex-direction: column;
         align-items: stretch;
+        padding-bottom: 100px;
         box-sizing: border-box;
     }
 
