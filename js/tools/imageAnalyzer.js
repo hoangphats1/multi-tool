@@ -38,6 +38,10 @@ export function getImageAnalyzerHtml() {
 }
 
 export function initImageAnalyzer() {
+  const MAX_IMAGE_SIZE_MB = 3;
+  const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * 1024 * 1024;
+
+  const panel = document.getElementById('panel');
   const previewContainer = document.getElementById('preview-container');
   const imagePreview = document.getElementById('image-preview');
   const aiActions = document.getElementById('ai-actions');
@@ -48,7 +52,7 @@ export function initImageAnalyzer() {
     mimeType: null,
   };
 
-  setupDragDrop(document.getElementById('image-drop-zone'), 'image-file-input', (file) => {
+  setupDragDrop(panel, 'image-file-input', (file) => {
     if (!file.type.startsWith('image/')) {
       showToast('Vui lòng chọn một file hình ảnh.', 'error');
       return;
@@ -65,7 +69,7 @@ export function initImageAnalyzer() {
       showToast('Không thể đọc file ảnh.', 'error');
       console.error(err);
     });
-  });
+  }, MAX_IMAGE_SIZE_BYTES);
 
   aiActions.addEventListener('click', async (e) => {
     const button = e.target.closest('button[data-prompt]');

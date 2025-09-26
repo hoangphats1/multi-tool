@@ -73,6 +73,10 @@ export function getImageToCodeGeneratorHtml() {
 }
 
 export function initImageToCodeGenerator() {
+    const MAX_IMAGE_SIZE_MB = 3;
+    const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * 1024 * 1024;
+
+    const panel = document.getElementById('panel');
     const previewContainer = document.getElementById('itc-preview-container');
     const imagePreview = document.getElementById('itc-preview');
     const generateBtn = document.getElementById('generate-code-btn');
@@ -84,7 +88,7 @@ export function initImageToCodeGenerator() {
 
     let imageData = { base64: null, mimeType: null };
 
-    setupDragDrop(document.getElementById('itc-drop-zone'), 'itc-file-input', (file) => {
+    setupDragDrop(panel, 'itc-file-input', (file) => {
         if (!file.type.startsWith('image/')) {
             showToast('Vui lòng chọn một file hình ảnh.', 'error');
             return;
@@ -96,7 +100,7 @@ export function initImageToCodeGenerator() {
             imageData.base64 = base64String.split(',')[1];
             imageData.mimeType = file.type;
         });
-    });
+    }, MAX_IMAGE_SIZE_BYTES);
 
     generateBtn.addEventListener('click', async () => {
         if (!imageData.base64) {
